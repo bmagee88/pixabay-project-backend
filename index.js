@@ -45,9 +45,7 @@ app.post("/sort", async (req, res) => {
   const order_asc = req.body.order_asc;
 
   try {
-    console.log(list_to_sort);
     await sorter.sortByField(list_to_sort, sort_by, order_asc);
-    console.log(list_to_sort);
     res.status(200).json(list_to_sort);
   } catch (err) {
     console.log(err);
