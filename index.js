@@ -45,7 +45,6 @@ app.get("/category", async (req, res) => {
 });
 
 app.post("/sort", async (req, res) => {
-  console.log("got sort")
   if (!req.body) {
     return res.sendStatus(400);
   }
@@ -53,14 +52,10 @@ app.post("/sort", async (req, res) => {
   const sort_by = req.body.sort_by;
   const order_asc = req.body.order_asc;
 
-  console.log("got order_asc")
   try {
-    console.log("got try")
     await sorter.sortByField(list_to_sort, sort_by, order_asc);
-    console.log("got sortByField")
     res.status(200).json(list_to_sort);
   } catch (err) {
-    console.log("got err")
     if (err instanceof ListEmptyException) {
       console.log(err.message);
       res.status(500).json(err.message);

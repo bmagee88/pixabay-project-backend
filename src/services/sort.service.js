@@ -37,9 +37,6 @@ async function sortByField(list, key, orderAsc) {
       throw new NonObjectInListException("all list items must be Objects");
     }
   });
-  console.log("key", key)
-  console.log("keys", Object.keys(list[0]))
-  console.log("key in list", Object.keys(list[0]).includes(key))
   if (!Object.keys(list[0]).includes(key))
     throw new KeyNotExistInObjectException(
       "The key provided does not exist in the object."
