@@ -11,3 +11,5 @@ notes:
 + if the server is terminated the cache is cleared.  Redis can be a persistant storage method for node projects.
 
 +I left comments in when sorting for date for easy checking in the console after sortBtn.onClick()
+
++I noticed that the pixabay api had pagination function, but i assumed to make a cache to be more efficient.

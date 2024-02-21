@@ -108,29 +108,4 @@ router.post("/sort", async (req, res) => {
   }
 });
 
-// Original implementation fetching using pagination via pixabay api
-// This is not efficient because everytime you switch pages you're calling the api again
-// even though its the same data.
-// categoryRouter.get("/", async (req, res) => {
-//     //
-//   const CATEGORY = req.query.category;
-//   const PAGE = req.query.page;
-//   const PER_PAGE = req.query.per_page;
-//   const KEY = process.env.KEY;
-
-//   try {
-//     const data = await axios.get(
-//       `https://pixabay.com/api/?key=${KEY}&q=${CATEGORY}&page=${PAGE}&per_page=${PER_PAGE}`
-//     );
-//     // if sorting parameter
-//     if(req.query.sort){
-//         //sort the results
-//     }
-//     res.status(200).json(data.data);
-//   } catch (err) {
-//     console.log(err);
-//     res.status(500).json("error during fetch");
-//   }
-// });
-
 module.exports = router;
