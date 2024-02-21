@@ -18,6 +18,7 @@ router.get("/category", async (req, res) => {
   const OFFSET = PAGE * PER_PAGE;
   const category_state = ImageState.getKey(CATEGORY);
   if (category_state) {
+    console.log("cache hit:", CATEGORY)
     const remaining_pre = category_state.length - (OFFSET + PER_PAGE);
     const remaining = remaining_pre <= 0 ? 0 : remaining_pre;
     const response = {
