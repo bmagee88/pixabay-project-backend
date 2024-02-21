@@ -18,7 +18,6 @@ router.get("/category", async (req, res) => {
   const OFFSET = PAGE * PER_PAGE;
   const category_state = ImageState.getKey(CATEGORY);
   if (category_state) {
-    console.log("cached hit", category_state.slice(OFFSET, OFFSET + PER_PAGE));
     const remaining_pre = category_state.length - (OFFSET + PER_PAGE);
     const remaining = remaining_pre <= 0 ? 0 : remaining_pre;
     const response = {
@@ -36,7 +35,6 @@ router.get("/category", async (req, res) => {
       `https://pixabay.com/api/?key=${KEY}&q=${CATEGORY}`
     );
     ImageState.setImages(CATEGORY, data.data.hits);
-    console.log("new category", ImageState.getImages());
 
     const category_state = ImageState.getKey(CATEGORY);
     const remaining_pre = category_state.length - (OFFSET + PER_PAGE);
@@ -56,6 +54,7 @@ router.post("/sort", async (req, res) => {
     return res.sendStatus(400);
   }
   const sort_by = req.body.sort_by;
+  console.log("sortkey", sort_by)
   const order_asc = req.body.order_asc;
   const CATEGORY = req.body.category;
   const PAGE = req.body.page - 1;
@@ -64,8 +63,6 @@ router.post("/sort", async (req, res) => {
   const remaining_pre =
     category_state.length - (OFFSET + PER_PAGE);
   const remaining = remaining_pre <= 0 ? 0 : remaining_pre;
-
-  console.log(`sort-${sort_by}, order-${order_asc}`);
 
   let  list_to_sort = [];
   if (category_state) {
@@ -106,7 +103,7 @@ router.post("/sort", async (req, res) => {
       res.status(500).json(err.message);
       return;
     } else {
-      console.log("no errors");
+      console.log("no errors, but error");
     }
   }
 });
